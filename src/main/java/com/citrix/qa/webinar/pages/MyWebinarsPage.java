@@ -4,14 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-import com.citrix.qa.webinar.core.WebPage;
-
 /**
  * Landing page model
  * 
  * @author kaavyar
  */
-public class MyWebinarsPage extends WebPage {
+public class MyWebinarsPage extends GenericPage {
 
 	private static final By headerLogo = By.className("header-logo");
 	private static final By scheduleAWebinarLink = By.id("scheduleWebinar");

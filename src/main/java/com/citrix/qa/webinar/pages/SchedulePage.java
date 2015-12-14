@@ -6,9 +6,13 @@ import java.util.Date;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import com.citrix.qa.webinar.core.WebPage;
-
-public class SchedulePage extends WebPage {
+/**
+ * Page model for Schedule Webinar Page
+ * 
+ * @author kaavyar
+ *
+ */
+public class SchedulePage extends GenericPage {
 
 	private final static By titleTextBox = By.id("name");
 	private final static By descriptionTextArea = By.id("description");
@@ -28,6 +32,12 @@ public class SchedulePage extends WebPage {
 	private final static By timeZoneMenu = By.id("webinarTimesForm_timeZone__menu");
 	private final static By languageMenu = By.id("language__menu");
 	private final static By recursMenu = By.id("recurrenceForm_recurs__menu");
+
+	private final static By uiDatePickerNext = By.xpath("//span[text()='Next']");
+	private final static By uiDatePickerMonth = By.className("ui-datepicker-month");
+	private final static By uiDatePickerYear = By.className("ui-datepicker-year");
+
+	private final static String dayXPath = "//td[@data-handler='selectDay']//*[text()=<placeholder>]";
 
 	private final static String option = "li[title=<placeholder>]";
 
@@ -51,13 +61,13 @@ public class SchedulePage extends WebPage {
 	}
 
 	public void setStartDate(Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM dd, YYYY");
-		find(startDateTextBox).sendKeys(sdf.format(date));
+		find(startDateTextBox).click();
+		setDateInUIDatePicker(date);
 	}
 
 	public void setEndDate(Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM dd, YYYY");
-		find(endDateTextBox).sendKeys(sdf.format(date));
+		find(endDateTextBox).click();
+		setDateInUIDatePicker(date);
 	}
 
 	public void setStartTime(String time, String meridian) {
@@ -82,15 +92,34 @@ public class SchedulePage extends WebPage {
 		find(languageMenu).findElement(By.cssSelector(option.replace("<placeholder>", language))).click();
 	}
 
-	public MyWebinarsPage schedue() {
+	public ManageWebinarPage schedule() {
 		find(scheduleSubmit).click();
-		return new MyWebinarsPage(driver);
+		return new ManageWebinarPage(driver);
+	}
+
+	// Sets a date in ui date picker on the page
+	private void setDateInUIDatePicker(Date date) {
+		// Validate start date
+		if (date.before(new Date())) {
+			throw new IllegalArgumentException("Start date cannot be before today");
+		}
+		SimpleDateFormat month = new SimpleDateFormat("MMMM");
+		SimpleDateFormat year = new SimpleDateFormat("YYYY");
+		SimpleDateFormat day = new SimpleDateFormat("d");
+
+		// Move next till month and year are as expected
+		while (!month.format(date).equals(find(uiDatePickerMonth).getText())
+				|| !year.format(date).equals(find(uiDatePickerYear).getText())) {
+			find(uiDatePickerNext).click();
+		}
+
+		// Once month and day are selected click on the desired day
+		find(By.xpath(dayXPath.replace("<placeholder>", day.format(date)))).click();
 	}
 
 	@Override
 	public void verifyCurrentPage() {
-		// TODO Auto-generated method stub
-
+		// TODO ADD VERIFICATION HERE
 	}
 
 }

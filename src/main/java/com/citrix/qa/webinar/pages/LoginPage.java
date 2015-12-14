@@ -15,6 +15,10 @@ public class LoginPage extends WebPage {
 		super(driver);
 	}
 
+	public void open() {
+		driver.get("https://global.gotowebinar.com/webinars.tmpl");
+	}
+
 	/**
 	 * Login method
 	 * 
