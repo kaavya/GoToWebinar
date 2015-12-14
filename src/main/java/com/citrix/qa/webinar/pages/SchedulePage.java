@@ -61,12 +61,12 @@ public class SchedulePage extends GenericPage {
 	}
 
 	public void setStartDate(Date date) {
-		find(startDateTextBox).click();
+		find(startDateTextBox).sendKeys("");
 		setDateInUIDatePicker(date);
 	}
 
 	public void setEndDate(Date date) {
-		find(endDateTextBox).click();
+		find(endDateTextBox).sendKeys("");
 		setDateInUIDatePicker(date);
 	}
 

@@ -14,6 +14,7 @@ import com.citrix.qa.webinar.util.Constants;
 import com.citrix.qa.webinar.util.Utility;
 
 public class BasicTest extends WebTest {
+
 	@Test
 	public void verifyWebinarCreatedWithCorrectTitleAndDate() {
 		LoginPage loginPage = new LoginPage(driver);

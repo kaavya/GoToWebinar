@@ -1,0 +1,10 @@
+<!DOCTYPE xml>
+<suite name="Interview Solution" verbose="1">
+	<parameter name="browser" value="chrome" />
+	<parameter name="chromedriver" value="chromedriver" />
+	<test name="interview">
+		<classes>
+			<class name="com.citrix.qa.webinar.BasicTest" />
+		</classes>
+	</test>
+</suite>
