@@ -1,7 +1,7 @@
 <!DOCTYPE xml>
 <suite name="Interview Solution" verbose="1">
 	<parameter name="browser" value="chrome" />
-	<parameter name="chromedriver" value="chromedriver" />
+	<parameter name="chromedriver" value="C:\alexandria\GoToWebinar\chromedriver.exe" />
 	<test name="interview">
 		<classes>
 			<class name="com.citrix.qa.webinar.BasicTest" />

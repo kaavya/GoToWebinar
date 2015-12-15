@@ -114,7 +114,9 @@ public class SchedulePage extends GenericPage {
 		}
 
 		// Once month and day are selected click on the desired day
+
 		find(By.xpath(dayXPath.replace("<placeholder>", day.format(date)))).click();
+                
 	}
 
 	@Override

@@ -23,14 +23,13 @@ public class Utility {
 	public static Date getXDaysFromNow(int x) {
 		Calendar calendar = Calendar.getInstance();
 
-		for (int i = 0; i < x;) {
-			calendar.add(Calendar.DAY_OF_MONTH, 1);
+		calendar.add(Calendar.DAY_OF_MONTH, x);
 			// i is only increased if it is week day
-			if (calendar.get(Calendar.DAY_OF_WEEK) <= 5) {
-				i++;
-			}
+			//if (calendar.get(Calendar.DAY_OF_WEEK) <= 5) {
+			//	i++;
+			//}
 
-		}
+		
 		return calendar.getTime();
 	}
 }
